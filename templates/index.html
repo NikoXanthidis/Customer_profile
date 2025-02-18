@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previsão de Cluster</title>
+    <script>
+        async function preverCluster() {
+            let dados = {
+                BALANCE: parseFloat(document.getElementById("BALANCE").value),
+                BALANCE_FREQUENCY: parseFloat(document.getElementById("BALANCE_FREQUENCY").value),
+                PURCHASES: parseFloat(document.getElementById("PURCHASES").value),
+                ONEOFF_PURCHASES: parseFloat(document.getElementById("ONEOFF_PURCHASES").value),
+                INSTALLMENTS_PURCHASES: parseFloat(document.getElementById("INSTALLMENTS_PURCHASES").value),
+                CASH_ADVANCE: parseFloat(document.getElementById("CASH_ADVANCE").value),
+                PURCHASES_FREQUENCY: parseFloat(document.getElementById("PURCHASES_FREQUENCY").value),
+                ONEOFF_PURCHASES_FREQUENCY: parseFloat(document.getElementById("ONEOFF_PURCHASES_FREQUENCY").value),
+                PURCHASES_INSTALLMENTS_FREQUENCY: parseFloat(document.getElementById("PURCHASES_INSTALLMENTS_FREQUENCY").value),
+                CASH_ADVANCE_FREQUENCY: parseFloat(document.getElementById("CASH_ADVANCE_FREQUENCY").value),
+                CASH_ADVANCE_TRX: parseFloat(document.getElementById("CASH_ADVANCE_TRX").value),
+                PURCHASES_TRX: parseFloat(document.getElementById("PURCHASES_TRX").value),
+                CREDIT_LIMIT: parseFloat(document.getElementById("CREDIT_LIMIT").value),
+                PAYMENTS: parseFloat(document.getElementById("PAYMENTS").value),
+                MINIMUM_PAYMENTS: parseFloat(document.getElementById("MINIMUM_PAYMENTS").value),
+                PRC_FULL_PAYMENT: parseFloat(document.getElementById("PRC_FULL_PAYMENT").value),
+                TENURE: parseFloat(document.getElementById("TENURE").value)
+            };
+
+            let response = await fetch("/prever", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(dados)
+            });
+
+            let resultado = await response.json();
+            document.getElementById("resultado").innerText = "Cluster previsto: " + resultado.cluster;
+        }
+    </script>
+</head>
+<body>
+    <h2>Prever Cluster do Cliente</h2>
+    <form onsubmit="event.preventDefault(); preverCluster();">
+        <label for="BALANCE">BALANCE:</label>
+        <input type="number" id="BALANCE" step="any" required><br>
+
+        <label for="BALANCE_FREQUENCY">BALANCE_FREQUENCY:</label>
+        <input type="number" id="BALANCE_FREQUENCY" step="any" required><br>
+
+        <label for="PURCHASES">PURCHASES:</label>
+        <input type="number" id="PURCHASES" step="any" required><br>
+
+        <label for="ONEOFF_PURCHASES">ONEOFF_PURCHASES:</label>
+        <input type="number" id="ONEOFF_PURCHASES" step="any" required><br>
+
+        <label for="INSTALLMENTS_PURCHASES">INSTALLMENTS_PURCHASES:</label>
+        <input type="number" id="INSTALLMENTS_PURCHASES" step="any" required><br>
+
+        <label for="CASH_ADVANCE">CASH_ADVANCE:</label>
+        <input type="number" id="CASH_ADVANCE" step="any" required><br>
+
+        <label for="PURCHASES_FREQUENCY">PURCHASES_FREQUENCY:</label>
+        <input type="number" id="PURCHASES_FREQUENCY" step="any" required><br>
+
+        <label for="ONEOFF_PURCHASES_FREQUENCY">ONEOFF_PURCHASES_FREQUENCY:</label>
+        <input type="number" id="ONEOFF_PURCHASES_FREQUENCY" step="any" required><br>
+
+        <label for="PURCHASES_INSTALLMENTS_FREQUENCY">PURCHASES_INSTALLMENTS_FREQUENCY:</label>
+        <input type="number" id="PURCHASES_INSTALLMENTS_FREQUENCY" step="any" required><br>
+
+        <label for="CASH_ADVANCE_FREQUENCY">CASH_ADVANCE_FREQUENCY:</label>
+        <input type="number" id="CASH_ADVANCE_FREQUENCY" step="any" required><br>
+
+        <label for="CASH_ADVANCE_TRX">CASH_ADVANCE_TRX:</label>
+        <input type="number" id="CASH_ADVANCE_TRX" step="any" required><br>
+
+        <label for="PURCHASES_TRX">PURCHASES_TRX:</label>
+        <input type="number" id="PURCHASES_TRX" step="any" required><br>
+
+        <label for="CREDIT_LIMIT">CREDIT_LIMIT:</label>
+        <input type="number" id="CREDIT_LIMIT" step="any" required><br>
+
+        <label for="PAYMENTS">PAYMENTS:</label>
+        <input type="number" id="PAYMENTS" step="any" required><br>
+
+        <label for="MINIMUM_PAYMENTS">MINIMUM_PAYMENTS:</label>
+        <input type="number" id="MINIMUM_PAYMENTS" step="any" required><br>
+
+        <label for="PRC_FULL_PAYMENT">PRC_FULL_PAYMENT:</label>
+        <input type="number" id="PRC_FULL_PAYMENT" step="any" required><br>
+
+        <label for="TENURE">TENURE:</label>
+        <input type="number" id="TENURE" step="any" required><br>
+
+        <button type="submit">Prever Cluster</button>
+    </form>
+
+    <h3 id="resultado"></h3>
+</body>
+</html>
