@@ -1,3 +1,3 @@
-# Customer_profile
-This project aims to detect which type of profile each bank customer belongs to.
-Esse projeto tem o objetivo de detectar a qual tipo de perfil cada cliente do banco pertence.
+Este projeto processa uma base de dados contendo informações bancárias de indivíduos (sem identificação pessoal) e realiza uma segmentação utilizando um método de aprendizado não supervisionado. Após essa etapa, uma nova base de dados é gerada com os grupos definidos (clusters). Em seguida, um modelo de aprendizado supervisionado é treinado com o objetivo de classificar novos clientes dentro desses grupos, permitindo determinar quais produtos e serviços devem ou não ser oferecidos a cada perfil.
+
+This project processes a database containing banking information of individuals (without personal identification) and performs segmentation using an unsupervised learning method. After this step, a new database is generated with the defined groups (clusters). Then, a supervised learning model is trained to classify new clients into these groups, enabling the identification of which products and services should or should not be offered to each profile.
